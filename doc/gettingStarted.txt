@@ -1,0 +1,37 @@
+https://github.com/kaushikkumarbz/url-shortner-web-app 
+
+
+Step 1. 
+        a. Install - Git, Nodejs, Postman
+        b. get connection string for MongoDB 
+        c. Obtain OAuth 2.0 Client Credentials from Google
+
+Step 2. 
+        a. Basic of Git.
+
+Step 3. 
+        a. Clone the url-shortener repo from git.
+
+Step 4. 
+        a. Deploy the my fork to Render ( any change on the current fork should reflect on the render deployment )
+
+Step 5. 
+        a. Basic of javascript
+
+Step 6. 
+        c. React 
+
+Step 7.
+        a. Nodejs
+        b. Writing APIs 
+        c. Caching and middleware
+        d. Make call from frontend and postman to test the API. 
+
+Step 8. 
+        a. Authentication
+
+Step 9. 
+        a. Page to short the url with QR code. 
+
+Step 10. 
+        a. Page to show all my short url list and click count. 
