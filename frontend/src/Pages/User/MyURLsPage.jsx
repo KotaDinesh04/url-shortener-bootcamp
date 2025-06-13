@@ -30,8 +30,6 @@ function MyURLsPage() {
     },
     // Only enable this query if the user is considered logged in by Redux.
     enabled: isLoggedIn,
-    keepPreviousData: true,
-    staleTime: 5 * 60 * 1000, // Keep data fresh for 5 minutes
     refetchOnWindowFocus: true, // Re-fetch when window regains focus
     onError: (err) => {
       if (err.response && err.response.status === 401) {
