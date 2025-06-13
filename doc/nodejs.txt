@@ -1,4 +1,1 @@
-3. Backend
-Node.js
-Express (CRUD API development)
-MongoDB (with Mongoose for ODM)
+https://docs.google.com/document/d/1Xuplsl4UjiUy36rtMUWFkj66kBj65npJa0VfPk7nDRc/edit?usp=sharing
