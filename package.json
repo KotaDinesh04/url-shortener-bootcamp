@@ -6,5 +6,8 @@
   "scripts": {
     "start": "cd backend && npm i && npm start"
   },
-  "author": ""
+  "author": "",
+  "dependencies": {
+    "qrcode.react": "^4.2.0"
+  }
 }
