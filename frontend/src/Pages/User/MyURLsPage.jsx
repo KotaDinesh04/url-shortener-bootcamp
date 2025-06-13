@@ -45,7 +45,7 @@ function MyURLsPage() {
   // React Query Mutation for updating a short URL
   const updateUrlMutation = useMutation({
     mutationFn: async ({ shortCode, urlData }) => {
-      const response = await service.patch(`short-url/${shortCode}`, urlData);
+      const response = await service.patch(`s/${shortCode}`, urlData);
       return response;
     },
     onSuccess: () => {
@@ -122,7 +122,7 @@ function MyURLsPage() {
   };
 
   // Helper function to construct the full shortened link
-  const getShortenedLink = (shortCode) => `${service.getBaseURL()}/api/short-url/${shortCode}`;
+  const getShortenedLink = (shortCode) => `${service.getBaseURL()}/api/s/${shortCode}`;
   // Ensure this matches your redirection logic
 
   // Conditional rendering based on login status

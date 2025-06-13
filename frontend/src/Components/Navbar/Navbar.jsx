@@ -1,4 +1,4 @@
-import { ActionIcon, Avatar, Button, Menu, Text } from '@mantine/core'
+import { ActionIcon, Avatar, Button, Group, Menu, Text } from '@mantine/core'
 import React from 'react'
 import {
   IconSettings,
@@ -11,7 +11,17 @@ import {
 } from '@tabler/icons-react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getIsLoggedIn, getUserAvatar, removeUser } from '../../redux/slices/User';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, NavLink, useNavigate } from 'react-router-dom';
+import classes from './HeaderSearch.module.css';
+import { useState } from 'react';
+
+
+const links = [
+  { link: '/url/shortener', label: 'Shorten Url ' },
+  { link: '/url/list', label: 'My URLs' },
+
+];
+
 
 const Navbar = () => {
 
@@ -19,6 +29,23 @@ const Navbar = () => {
     const isLoggedIn = useSelector(getIsLoggedIn);
     const dispatch = useDispatch();
     const navigate = useNavigate(); // <--- This line is critical and must be inside the component body
+  const [active, setActive] = useState(null);
+
+
+
+const items = links.map((link) => (
+  <NavLink
+    key={link.label}
+    to={link.link} // Use 'to' instead of 'href'
+    // NavLink automatically provides an 'isActive' boolean.
+    // This removes the need for your manual 'active' state!
+    className={({ isActive }) => 
+      `${classes.link} ${isActive ? classes.activeLink : ''}`
+    }
+  >
+    {link.label}
+  </NavLink>
+));
 
    
 
@@ -28,14 +55,11 @@ const Navbar = () => {
             <Text component={Link} to={'/'} mx={30} c='white' style={{ fontWeight: 'bolder'}}>URL <Text component='span'>Shortener</Text></Text>
         </div>
         <div style={{ width: '80%', display: 'flex', justifyContent: 'end', alignItems: 'center'}}>
-            {isLoggedIn && <Button 
-                variant='outline'
-                c={'white'} 
-                style={{ borderColor: 'white'}}
-                onClick={() => navigate('/urlShortener')}
-            >
-                Shorten URL
-            </Button>}
+            {isLoggedIn && <Group ml={50} gap={5} className={classes.links} visibleFrom="sm">
+            {items}
+
+          </Group>}
+
             {isLoggedIn ? <Menu shadow="md" width={200} position='bottom-end'>
                 <Menu.Target>
                     <Avatar mx={'lg'} src={userAvatar} alt='Profile' size={'md'} style={{ cursor: 'pointer'}}/>     
@@ -45,9 +69,6 @@ const Navbar = () => {
                     <Menu.Item onClick={()=> navigate('/profile')}>
                         Profile
                     </Menu.Item>
-                    <Menu.Item onClick={()=> navigate('/url/list')}> {/* Use the logging handler here */}
-                            My Urls
-                        </Menu.Item>
                     <Menu.Item onClick={() => dispatch(removeUser())}>
                         Logout
                     </Menu.Item>
