@@ -1,13 +1,14 @@
-import { ActionIcon, Button, Center, Text, TextInput, Tooltip } from '@mantine/core'
+import { ActionIcon, Button, Center, Group, Image, Text, TextInput, Tooltip } from '@mantine/core'
 import LinkBackground from '../../assets/LinksBackground.png';
 import { useState } from 'react';
 import { useMutation } from '@tanstack/react-query';
 import Service from '../../utils/http';
 import { SHORTEN_URL } from '../../utils/urls';
 import { showNotification } from '@mantine/notifications';
-import { IconCheck, IconCopy } from '@tabler/icons-react';
+import { IconCheck, IconCopy, IconReload } from '@tabler/icons-react';
 import { useClipboard } from '@mantine/hooks';
 import { isValidUrl } from '../../utils/utils';
+import { QRCodeSVG } from "qrcode.react"
 
 const URLShortener = () => {
 
@@ -61,11 +62,22 @@ const URLShortener = () => {
   }
 
   return (
-    <Center h={'90vh'} style={{ background: `url(${LinkBackground})`, backgroundPosition: 'center', backgroundSize: 'cover'}}>
-        <Center style={{ height: '95%', width: '95%', backgroundColor: 'rgba(3, 125, 191, 0.61)', backdropFilter: 'blur(10px)', borderRadius: '10px', flexDirection: 'column'}}>
+    <Center h={'90vh'} style={{ backgroundPosition: 'center', backgroundSize: 'cover', flexDirection: 'column'}}>
+        <div style={{ display: 'flex', justifyContent: 'end', width: '100%', height: '100px', alignItems: 'center'}}>
+            {shortURL && shortURL.length && <Button 
+              variant='outline'
+              mt={'md'}
+              onClick={() => setShortURL('')}
+              mx={'xl'}
+              rightSection={<IconReload size={19}/>}
+            >
+              Generate New URL
+            </Button>}
+        </div>
+        <Center style={{ height: '95%', width: '95%', backdropFilter: 'blur(10px)', borderRadius: '10px', flexDirection: 'column'}}>
             {shortURL && shortURL.length > 0 ?
               <> 
-                <Text bg={'rgba(0, 0, 0, 0.3)'} p={7} style={{ borderRadius: '10px'}} fw={'bolder'} size='xl' c={'white'} my={'xs'} w={400} ta={'center'}>Generated Short URL </Text>
+                <Text style={{ borderRadius: '10px'}} fw={'bolder'} size='xl' my={'xs'} w={400} ta={'center'}>Generated Short URL </Text>
                 <div style={{ display: 'flex', alignItems: 'center'}}>
                   <TextInput
                     value={shortURL}
@@ -74,8 +86,7 @@ const URLShortener = () => {
                     readOnly
                     styles={{
                       input: {
-                        fontWeight: 'bold',
-                        fontSize: '1.2rem',
+                        fontSize: '1.1rem',
                         color: 'black',
                         height: '50px',
                         borderRadius: '10px'
@@ -98,6 +109,16 @@ const URLShortener = () => {
                     }
                   />
                 </div>
+                <Center style={{ height: '150px', width: '150px', padding: 10, background: 'white', borderRadius: '10px', border: '1px solid black'}} my={'lg'}>
+                  <QRCodeSVG imageSettings={{
+                      excavate: true,
+                      src: '/HomeBackground.png',
+                      height: 100,
+                      width: 100
+                  }} value={shortURL} size={400}>
+                    <Image src={'/HomeBackground.png'} />
+                  </QRCodeSVG> 
+                </Center>
               </>
               :
             <>
@@ -107,7 +128,7 @@ const URLShortener = () => {
                   radius={'md'} 
                   my={'lg'} 
                   label="Title"
-                  labelProps={{ style: { color: 'white', fontWeight: 'bold' } }}
+                  labelProps={{ style: { fontWeight: 'bold' } }}
                   onChange={(e) => setTitle(e.target.value)}
                   value={title}
                 />
@@ -117,7 +138,7 @@ const URLShortener = () => {
                     radius={'md'} 
                     mb={'lg'}
                     label="Original URL"
-                    labelProps={{ style: { color: 'white', fontWeight: 'bold' } }}
+                    labelProps={{ style: { fontWeight: 'bold' } }}
                     onChange={(e) => setOriginalURL(e.target.value)}
                     aria-valuemax={originalURL}
                 />
@@ -126,14 +147,15 @@ const URLShortener = () => {
                     w={400} 
                     mb={'lg'}
                     label="Date of Expiry"
-                    labelProps={{ style: { color: 'white', fontWeight: 'bold' } }}
+                    labelProps={{ style: { fontWeight: 'bold' } }}
                     onChange={(e) => setExpiryDate(e.target.value)}
                     value={expiryDate}
                 />
                 <Button 
-                  color='white' 
+                  color='blue' 
                   variant='outline' 
                   w={400}
+                  radius={'md'}
                   onClick={validateAndGenerateURL}
                 >
                   Generate And Shorten URL
