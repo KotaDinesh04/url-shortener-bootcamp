@@ -27,7 +27,7 @@ const Home = () => {
                     my={'lg'} 
                     variant="outline" 
                     c={'white'}
-                    onClick={() => {isLoggedIn ? navigate('/urlShortener') : navigate('/login')}}
+                    onClick={() => {isLoggedIn ? navigate('/url/shortener') : navigate('/login')}}
                     style={{ borderColor: 'white'}}
                     >
                         Get Started

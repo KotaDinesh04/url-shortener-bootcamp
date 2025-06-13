@@ -36,7 +36,7 @@ const URLShortener = () => {
       color: 'green'
     })
     console.log(data)
-    setShortURL(`${service.getBaseURL()}/api/short-url/${data.shortCode}`);
+    setShortURL(`${service.getBaseURL()}/api/s/${data.shortCode}`);
   }, onError: (error) => {
     console.error(error);
     showNotification({

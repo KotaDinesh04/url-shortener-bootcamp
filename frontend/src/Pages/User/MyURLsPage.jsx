@@ -30,8 +30,6 @@ function MyURLsPage() {
     },
     // Only enable this query if the user is considered logged in by Redux.
     enabled: isLoggedIn,
-    keepPreviousData: true,
-    staleTime: 5 * 60 * 1000, // Keep data fresh for 5 minutes
     refetchOnWindowFocus: true, // Re-fetch when window regains focus
     onError: (err) => {
       if (err.response && err.response.status === 401) {
@@ -47,7 +45,7 @@ function MyURLsPage() {
   // React Query Mutation for updating a short URL
   const updateUrlMutation = useMutation({
     mutationFn: async ({ shortCode, urlData }) => {
-      const response = await service.patch(`short-url/${shortCode}`, urlData);
+      const response = await service.patch(`s/${shortCode}`, urlData);
       return response;
     },
     onSuccess: () => {
@@ -124,7 +122,7 @@ function MyURLsPage() {
   };
 
   // Helper function to construct the full shortened link
-  const getShortenedLink = (shortCode) => `${service.getBaseURL()}/api/short-url/${shortCode}`;
+  const getShortenedLink = (shortCode) => `${service.getBaseURL()}/api/s/${shortCode}`;
   // Ensure this matches your redirection logic
 
   // Conditional rendering based on login status

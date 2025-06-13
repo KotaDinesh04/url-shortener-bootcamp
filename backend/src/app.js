@@ -31,7 +31,7 @@ app.use(cookieParser());
 connectDB();
 
 app.use("/api/auth", authRouter);
-app.use("/api/short-url", shortURLRouter);
+app.use("/api/s", shortURLRouter);
 app.use("/api/user", userRouter);
 
 app.use(express.static(path.join(__dirname, "../../frontend/dist")));
