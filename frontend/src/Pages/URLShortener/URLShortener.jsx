@@ -74,10 +74,15 @@ const URLShortener = () => {
               Generate New URL
             </Button>}
         </div>
-        <Center style={{ height: '95%', width: '95%', backdropFilter: 'blur(10px)', borderRadius: '10px', flexDirection: 'column'}}>
+        <div style={{ display: 'flex', justifyContent: 'center', width: '100%', height: '100px', alignItems: 'center'}}>
+            <Text size="50px" fw="lighter" style={{ textShadow: '2px 2px 10px rgba(0, 0, 0, 0.69)' }}>
+              Shorten Your URL Here
+            </Text>
+        </div>
+        <Center style={{ height: '95%', width: '95%', backdropFilter: 'blur(10px)', borderRadius: '10px', flexDirection: 'column', justifyContent: 'flex-start'}}>
             {shortURL && shortURL.length > 0 ?
               <> 
-                <Text style={{ borderRadius: '10px'}} fw={'bolder'} size='xl' my={'xs'} w={400} ta={'center'}>Generated Short URL </Text>
+              <Text style={{ borderRadius: '10px'}} fw={'bolder'} size='xl' my={'xs'} w={400} ta={'center'}>Generated Short URL </Text>
                 <div style={{ display: 'flex', alignItems: 'center'}}>
                   <TextInput
                     value={shortURL}
