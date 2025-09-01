@@ -21,7 +21,7 @@ const Home = () => {
         <Group w={'50%'}>
             <Center style={{ height: '95%', width: '100%', background: 'linear-gradient(to left, rgba(248, 141, 248, 0.7), rgba(70, 166, 222, 0.5))', backdropFilter: 'blur(5px)', borderRadius: '10px', flexDirection: 'column'}}>
                 <Text size={'30px'} ta={'center'} c={'white'}>
-                    Welcome to <Text size="40px" c={'white'} fw={'bold'} my={'xs'}>Being Zero URL Shortener</Text>
+                    Welcome to <Text size="40px" c={'white'} fw={'bold'} my={'xs'}>HELLO WORLDr</Text>
                 </Text>
                 <Button 
                     my={'lg'} 
