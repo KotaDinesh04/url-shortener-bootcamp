@@ -9,7 +9,7 @@ node_modules
 # testing
 /coverage
 # production
-
+/backend/.env
 # misc
 .DS_Store
 .env.local
